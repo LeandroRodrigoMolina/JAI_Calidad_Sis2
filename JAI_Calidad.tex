@@ -6,6 +6,9 @@
 \usepackage{csquotes}
 \usepackage{amsmath, amssymb, amsfonts}
 \usepackage{graphicx}
+
+% Añadir al inicio del documento después de \usepackage{graphicx}
+\usepackage{tikz}
 \usepackage[style=apa, backend=biber, natbib=true, language=spanish, url=true]{biblatex}
 \usepackage{tocloft} % Para personalizar el índice
 \usepackage[left=3.5cm,right=2.5cm,top=3.5cm,bottom=3.8cm]{geometry}
@@ -55,7 +58,7 @@ pdfborderstyle={/S/U/W 1}]{hyperref}
 \begin{document}
 	% Carátula
 	\centering
-	{\fontsize{14}{17}\bfseries Plan de calidad SGC.\par}
+	{\fontsize{14}{17}\bfseries Aseguramiento de la Calidad en Proyectos de Software: Caso del Sistema de Gestión Empresarial.\par}
 	{\small Borgo, Martín Alejandro; Molina, Leandro Rodrigo; Confalonieri, Juan; Tenich, Javier; Sandoval, Jose; Panozzo Jeremias.\par}
 	{\normalsize Universidad Nacional de Entre Ríos\par}
 	{\normalsize Facultad de Ciencias de la Administración\par}
@@ -75,74 +78,199 @@ pdfborderstyle={/S/U/W 1}]{hyperref}
 	\justifying
 	
 	\section{Introducción}
-	En sectores más convencionales como la industria de manufacturas, el concepto de calidad fue
-	establecido por los distintos participantes del mercado, en parte por la existencia de un bien
-	físico que puede ser inspeccionado no solo a través de los sentidos sino también a partir de
-	ciertos estándares propios de cada fabricante.
 	
-	Aplicar este concepto a la industria del software resulta difícil en la mayoría de los casos, en
-	parte por la inexistencia de un producto físico y más importante aún, es el hecho de que cuando
-	hablamos de software, la palabra calidad puede tener diversas connotaciones, la cual varía de
-	acuerdo al rol y posición del individuo que analiza el programa en cuestión. Por ejemplo para los
-	usuarios finales, la “calidad de software” radica en el funcionamiento libre de defectos, la
-	fiabilidad y facilidad de uso del sistema, un nivel aceptable de tolerancia al fallo, entre otras. Para
-	el desarrollador, la calidad recae en el cumplimiento de las especificaciones, definida tanto por la
-	organización en cuestión u otros entes asociados con la industria y estándares. Para los
-	organismos de estándares, la calidad se centra en proteger la reputación de la industria,
-	prevenir el fraude, evitar demandas legales y abordar las preocupaciones de los consumidores,
-	entre otros aspectos.
+	En sectores más convencionales como la industria de manufacturas, el concepto de calidad fue establecido por los distintos participantes del mercado, en parte por la existencia de un bien físico que puede ser inspeccionado no solo a través de los sentidos sino también a partir de ciertos estándares propios de cada fabricante.
 	
-	Debido a que existen diferentes connotaciones de la palabra “calidad”, es necesario dar una
-	definición que contemple cada uno de estos puntos de vista. Según la ISO 9000 la calidad se
-	define como "\textit{el grado en que un conjunto de características inherentes cumple con los requerimientos}" \parencite{ISO_9001_2015}. Si bien esta norma puede ser
-	aplicada en la construcción de software, autores como \parencite{Pressman_2010} define a la calidad como
-	la "\textit{conformidad con los requerimientos funcionales y de rendimiento explícitamente establecidos, con
-		los estándares de desarrollo documentados, y con las características implícitas que se esperan de
-		todo software desarrollado profesionalmente}." Esta definición sugiere tres requerimientos para la
-		garantía de calidad que deben ser cumplidos por el desarrollador:
+	Aplicar este concepto a la industria del software resulta difícil en la mayoría de los casos, en parte por la inexistencia de un producto físico y más importante aún, es el hecho de que cuando hablamos de software, la palabra calidad puede tener diversas connotaciones, la cual varía de acuerdo con el rol y posición del individuo que analiza el programa en cuestión. Por ejemplo, para los usuarios finales, la “calidad de software” radica en el funcionamiento libre de defectos, la fiabilidad y facilidad de uso del sistema, un nivel aceptable de tolerancia al fallo, entre otras. Para el desarrollador, la calidad recae en el cumplimiento de las especificaciones, definida tanto por la organización en cuestión u otros entes asociados con la industria y estándares. Para los organismos de estándares, la calidad se centra en proteger la reputación de la industria, prevenir el fraude, evitar demandas legales y abordar las preocupaciones de los consumidores, entre otros aspectos.
+	
+	Debido a que existen diferentes connotaciones de la palabra “calidad”, es necesario dar una definición que contemple cada uno de estos puntos de vista. Según la ISO 9000 la calidad se define como "\textit{el grado en que un conjunto de características inherentes cumple con los requerimientos}" \parencite{ISO_9001_2015}. Si bien esta norma puede ser aplicada en la construcción de software, autores como \parencite{Pressman_2010} define a la calidad como "\textit{la conformidad con los requerimientos funcionales y de rendimiento explícitamente establecidos, con los estándares de desarrollo documentados, y con las características implícitas que se esperan de todo software desarrollado profesionalmente}" \newline Esta definición sugiere tres requerimientos para la garantía de calidad que deben ser cumplidos por el desarrollador:
+	
+	\begin{itemize}
+		\item Requerimientos funcionales específicos, refieren principalmente a las salidas del sistema de software.
+		\item Estándares de calidad del software mencionados en el contrato.
+		\item Buenas prácticas de ingeniería de software, reflejan prácticas profesionales de vanguardia, estas deben ser cumplidas por el desarrollador, incluso si no se mencionan explícitamente en el contrato.
+	\end{itemize}
+	
+	Según \parencite{Deming_2018}, la aplicación de un buen proceso de desarrollo de software produce un software de calidad. En este contexto, un plan de calidad es un documento que especifica qué procedimientos y recursos deberían aplicarse, quién debe aplicarlos y cuándo deberían aplicarse a un proyecto, proceso, producto o contrato específico, de manera de poder alcanzar los objetivos de la calidad \parencite{Álvarez_López_2005}, es decir, un documento que garantiza la calidad del software elaborado, en base a las expectativas del usuario y a los estándares utilizados.
+	
+	El aseguramiento de la calidad (QA) es el proceso encargado de verificar que se estén aplicando correctamente los procesos y estándares previamente definidos en el plan de calidad, los cuales tienen como objetivo asegurar la calidad del producto final \parencite{Sommerville_2011}.
+	
+	Este trabajo se realizó en el contexto de la cátedra de Metodología de Sistemas II, con el objetivo de aplicar los conocimientos impartidos en clase a través del desarrollo de un plan de calidad para el software “Sistema de Gestión Empresarial” (SGE), el cual será aplicado en el software antes mencionado para posteriormente ser revisado por un grupo externo.
+	
+	\section{Desarrollo de trabajo}
+	
+	El desarrollo del documento de calidad se realizará siguiendo el estándar IEEE 730 \parencite{IEEE_Standards_Association} para la especificación de los requerimientos y directrices del plan de calidad de software. Cabe aclarar que en este trabajo se aplicará dicho estándar de manera parcial, ya que la implementación del plan de calidad elaborado se realizará sobre un prototipo incompleto, en línea con el enfoque didáctico y educativo del presente trabajo. En las siguientes secciones se elaborarán las partes del plan de calidad, en cual consta con la siguiente estructura.
+	\begin{itemize}
+		\item Propósito.
+		\item Organización.
 		\begin{itemize}
-			\item Requerimientos funcionales específicos, refieren principalmente a las salidas del sistema de software.
-			\item Estándares de calidad del software mencionados en el contrato.
-			\item Buenas prácticas de ingeniería de software, reflejan prácticas profesionales de
-			vanguardia, estas deben ser cumplidas por el desarrollador, incluso si no se mencionan
-			explícitamente en el contrato.
+			\item Evaluación de Requerimientos.
+			\item Evaluación de diseño de Software.
+			\item Evaluación del Proceso de Acción Correctiva.
+			\item Revisión y Auditoría.
 		\end{itemize}
-		Según \parencite{Deming_2018} la aplicación de un buen proceso de desarrollo de software
-		produce un software de calidad. En este contexto, un plan de calidad es un documento que
-		especifica qué procedimientos y recursos deberían aplicarse, quién debe aplicarlos y cuándo
-		deberían aplicarse a un proyecto, proceso, producto o contrato específico, de manera de poder
-		alcanzar los objetivos de la calidad \parencite{Álvarez_López_2005}, es decir, un documento que
-		garantiza la calidad del software elaborado, en base a las expectativas del usuario y a los
-		estándares utilizados. El aseguramiento de la calidad (QA) es el proceso encargado de verificar que se estén aplicando
-		correctamente los procesos y estándares previamente definidos en el plan de calidad, los cuales
-		tiene como objetivo asegurar la calidad del producto final \parencite{Sommerville_2011}.
-		
-		Este trabajo se realizó en el contexto de la cátedra de Metodología de Sistemas II, con el objetivo
-		de aplicar los conocimientos impartidos en clase a través del desarrollo de un plan de calidad
-		para el software “Sistema de Gestión Empresarial” (SGE), el cual será aplicado en el software
-		antes mencionado para posteriormente ser revisado por un grupo externo.
-	\section{Desarrollo de Trabajo}
-	Inicio desarrolo del trabajo
-	\subsection{Proposito}
-	\subsection{Organizacion}
-	\subsubsection{Evaluacion de Requerimientos}
+		\item Documentación.
+		\item Pruebas.
+		\item Informe de Problemas y Acción Correctiva.
+		\item Gestión de Riesgo.
+		\begin{itemize}
+			\item Identificación de Riesgos.
+		\end{itemize}
+	\end{itemize}
+	
+	\subsection{Propósito}
+	El propósito es definir el Plan de Aseguramiento de la calidad del proyecto para SGE (Sistema de Gestión Empresarial), la organización, tareas y responsabilidades del equipo de aseguramiento de calidad, así como proporcionar guías, herramientas, técnicas y metodologías para la realización de actividades y de los reportes de calidad. 
+	
+	El objetivo del plan es verificar que el software y la documentación a ser entregada cumplan con todos los requerimientos técnicos. Los procedimientos definidos en este documento se utilizarán para examinar las prestaciones que dará el software, así como para examinar la documentación y determinar que ambos cumplieron con los requerimientos técnicos y de rendimiento del sistema a ser desarrollado.
+	
+	La siguiente lista identifica los elementos del software que abarcará este plan:
+	\begin{itemize}
+		\item Interfaz de Usuario (UI).
+		\item Modelo de Datos.
+	\end{itemize}
+	
+	\subsection{Organización}
+	En esta sección se muestran todas las tareas que el equipo de calidad realizará, estas tareas se realizarán a lo largo del ciclo de vida del proyecto, y se realizarán según los plazos establecidos en el plan de desarrollo de software.
+	
+	Una tarea se considerará completa si se ha elaborado el reporte correspondiente. Adicionalmente, las siguientes tareas que se describirán requieren la coordinación y cooperación del equipo de desarrollo para llevarlas a cabo satisfactoriamente por el equipo de calidad.
+	
+	\subsubsection{Evaluación de Requerimientos}
+	El análisis de requerimientos establece un acuerdo formal entre el equipo encargado del desarrollo del proyecto y los clientes o partes interesadas en el mismo. Se deberá mantener y establecer un acuerdo con los usuarios finales del sistema con el propósito de realizar correctamente el análisis de requerimientos de este.
+	
+	Las actividades a cargo del equipo de calidad abarcan las siguientes tareas:
+	\begin{enumerate}
+		\item Revisar los requerimientos para determinar su claridad y correctitud.
+		\item Verificar que los cambios en el documento de requerimientos del sistema sean seguidos, revisados y comunicados al equipo de desarrollo.
+		\item Verificar que los compromisos con los clientes sean apropiadamente documentados y comunicados al equipo de desarrollo.
+		\item Verificar los procesos descritos con el fin de definir, documentar y localizar requerimientos aún no documentados.
+		\item Verificar que los requerimientos estén apropiadamente documentados, controlados y seguidos.
+	\end{enumerate}
+	
+	El formato de la documentación será acordado previamente con el administrador del proyecto.
+	
 	\subsubsection{Evaluación del Diseño del Software}
+	El objetivo del proceso de diseño es tomar decisiones sobre la estructura de los componentes que utilizará el sistema como así también de la arquitectura bajo la cual se desarrollará este último. El nivel de detalle en el diseño debe ser tal que el código de los distintos módulos pueda ser implementado por personas que no formaron parte del equipo de diseño.
+	
+	Las actividades a cargo del asegurador de calidad son las siguientes:
+	\begin{enumerate}
+		\item Verificar que el proceso de diseño del software siga los estándares acordados por el equipo de diseño.
+		\item Verificar que todos los requerimientos se vean plasmados en el diseño.
+		\item Revisar y auditar el contenido de los documentos de diseño del sistema.
+		\item Determinar las acciones correctivas para aquellos casos en donde surja un incumplimiento de los estándares establecidos.
+	\end{enumerate}
+	
 	\subsubsection{Evaluación del Proceso de Acciones Correctivas}
+	El proceso de acción correctiva implica identificar el problema y la corrección realizada durante el desarrollo del software, reportar el problema a la autoridad correspondiente, analizar y realizar una corrección oportuna y competente para posteriormente registrar y dar seguimiento a cada problema.
+	
+	Las actividades que debe realizar el equipo de calidad son las siguientes:
+	\begin{enumerate}
+		\item Revisar el proceso de acción correctiva y sus resultados.
+		\item Documentar los resultados de estas tareas correctivas de acuerdo con el formato establecido previamente. Este documento deberá ser entregado al administrador del proyecto.
+		\item Coordinar cada acción correctiva con el administrador del proyecto.
+	\end{enumerate}
+	
 	\subsubsection{Revisión y Auditoría}
+	El equipo de calidad verificará de forma periódica el estado del proyecto, el progreso y los problemas de este, proporcionando de esta manera la siguiente información a la dirección del proyecto:
+	\begin{itemize}
+		\item El nivel de cumplimiento del proyecto de acuerdo con los plazos y funcionalidades definidas en los diferentes documentos que envuelven al proyecto.
+		\item Identificación de los problemas existentes o potenciales en las distintas áreas y equipos de desarrollo.
+	\end{itemize}
+	
+	Debido a la índole crítica de esta tarea, el equipo de calidad puede comunicar libremente los resultados obtenidos a la dirección del proyecto y al equipo de desarrollo.
 	
 	\subsection{Documentación}
-	\subsection{Pruebas}
-	\subsection{Informe de Problemas y Acción Correctiva}
-	\subsection{Gestión de Riesgo}
-	\subsubsection{Identificación de Riesgos}
+	La documentación que describe al SGE, y el proceso de desarrollo de software se creará y actualizará periódicamente en todo el ciclo de desarrollo del software. Los documentos listados, deben de estar bajo la administración de la configuración, enviando una petición al administrador de la Configuración de Software (ACS) cuando se realicen cambios para que este determine si el documento puede entrar a la versión de control.
 	
-	\section{Resultados Obtenidos}
-	Inicio resultados obtenidos
+	\begin{itemize}
+		\item Especificación de requerimientos de Software: Describe los requerimientos del software SGE, tanto funcionales como no funcionales.
+		\item Plan de Aseguramiento de Calidad: Describe los planes y roles que adoptará cada uno de los interesados en el desarrollo del software SGE.
+		\item Plan de Pruebas: Describe la nomenclatura utilizada en el proyecto, así como la forma en que se determina la línea base.
+		\item Plan de desarrollo de software: Describe lo que se va a implementar, los calendarios, actividades y responsabilidades de los miembros del equipo de desarrollo.
+	\end{itemize}
+	
+	Todos los documentos mencionados estarán sujetos a los siguientes criterios de revisión aplicados a lo largo del ciclo de vida del proyecto:
+	\begin{itemize}
+		\item Claridad y Precisión: El contenido debe ser claro y comprensible para todos los miembros del equipo, evitando ambigüedades.
+		\item Consistencia: La información debe ser coherente y uniforme entre todos los documentos.
+		\item Actualización y Control de Cambios: Los documentos deben estar sujetos a control de versiones y cambios, asegurando que cualquier modificación sea aprobada por el ACS antes de ser implementada.
+		\item Cumplimiento de Estándares: Confirmar que cada documento cumple con los estándares establecidos (por ejemplo, IEEE 730).
+	\end{itemize}
+	
+	\subsection{Pruebas}
+	Las actividades de pruebas que se realizarán para el proyecto SGE son los siguientes:
+	\begin{itemize}
+		\item Pruebas de Cajas Negras.
+		\item Pruebas de Aceptación.
+		\item Validación del Modelo de Datos.
+	\end{itemize}
+	
+	El administrador del proyecto deberá asignar una persona como líder del equipo de pruebas, el cual realizará un plan de pruebas para el software SGE. El personal que haya desarrollado algún caso de uso para el proyecto realizará las siguientes actividades de pruebas necesarias para el software:
+	\begin{itemize}
+		\item Realizar las pruebas de interfaz.
+		\begin{itemize}
+			\item Verificar la usabilidad.
+			\item Verificar las diferentes entradas de los formularios.
+			\item Verificar el correcto funcionamiento y uso de las ventanas y/o alertas emergentes.
+			\item Asegurar la navegabilidad.
+			\item Asegurar que sea intuitiva para el usuario.
+		\end{itemize}
+		\item Verificar los modelos de datos que utiliza el sistema.
+	\end{itemize}
+	
+	El equipo de calidad estará a cargo de auditar las actividades antes descritas y verificar que la documentación de pruebas sea adecuada, completa, correcta y aprobada antes de su utilización.
+	
+	\subsection{Informe de Problemas y Acción Correctiva}
+	El propósito de esta sección es describir el reporte y control del sistema utilizado por el equipo de calidad para registrar y analizar las discrepancias encontradas, así como monitorear la implementación de las acciones correctivas.
+	
+	El equipo de calidad reportará el resultado de las auditorías y las recomendaciones proporcionadas, con el fin de asegurar que el proceso se esté siguiendo de manera correcta y se está trabajando de forma efectiva. El proceso de reporte de auditorías está dirigido hacia el administrador del proyecto, el cual utilizará los reportes para:
+	\begin{itemize}
+		\item Saber si los procesos de desarrollo son acatados y efectivos para el cumplimiento de las metas del proyecto. El administrador de proyecto puede iniciar un cambio en el proceso cuando lo requiera siempre y cuando se siga las pedidas y procedimientos establecidos, esto con el fin de asegurar la estabilidad del proceso.
+		\item Para indicar el acuerdo, desacuerdo, o el aplazamiento de las recomendaciones hechas durante el proceso del reporte de auditoría. En caso de que el administrador del proyecto indique el desacuerdo con las recomendaciones registradas en el reporte de auditoría, la disposición final de recomendaciones del informe se hace por los mecenas del proyecto.
+	\end{itemize}
+	
+	Al encontrarse un problema que impacta en la calidad del proyecto, ya sea en algún documento, código o producto relacionado se tendrá que contactar con el creador de ese elemento. En casos de desacuerdos con el equipo de calidad se deberá notificar al administrador del proyecto para que tome cartas en el asunto y de una solución al problema. En caso de que el administrador del proyecto no haya dado una solución, el problema se elevará a los patrocinadores del proyecto para la toma final de una decisión.
+	
+	\subsection{Gestión de Riesgo}
+	El propósito de la gestión de riesgo es identificar y mitigar los posibles riesgos que puedan afectar el desarrollo, implementación y funcionamiento del software SGE. Este proceso permite reducir la probabilidad de que estos riesgos ocurran y minimizar su impacto si llegan a materializarse.
+	
+	\subsubsection{Identificación de Riesgos}
+	\begin{itemize}
+		\item Riesgos Técnicos: Falta de experiencia en tecnologías, fallos en la integración de componentes, o problemas de desempeño.
+		\item Riesgos de Planificación: Retrasos en el cronograma debido a dependencias externas o problemas con la asignación de recursos.
+		\item Riesgos de Calidad: Defectos no detectados en fases tempranas, que afecten la funcionalidad del sistema.
+		\item Riesgos de Requerimientos: Cambios inesperados en los requerimientos del cliente o falta de claridad en los mismos.
+	\end{itemize}
+	
+	Cada riesgo se evaluará según su probabilidad de ocurrencia (baja, media, alta) y su impacto (bajo, medio, alto). Esta evaluación se utilizará para priorizar los riesgos y centrar los esfuerzos de mitigación en los más críticos. Además, por cada riesgo identificado, se elaborará un plan de mitigación que incluirá acciones preventivas y de contingencia.
+	
+	\begin{itemize}
+		\item Acciones preventivas: Reducir la probabilidad de que ocurra el riesgo.
+		\item Acciones de contingencia: Tener planes alternativos listos si el riesgo se materializa.
+	\end{itemize}
+	
+	Los reportes tienen que ser reportados regularmente al director del proyecto, estos reportes deben poseer la siguiente información:
+	\begin{itemize}
+		\item Los riesgos detectados y su ocurrencia.
+		\item El estado actual de los riesgos y las acciones de contención.
+		\item Los posibles nuevos riesgos que puedan surgir.
+		\item Acciones de prevención y de contingencia propuestos.
+	\end{itemize}
+	
+	\section{Resultados obtenidos}
+	En el documento desarrollado en la sección anterior se especificó el plan de calidad, dentro del cual se definen los criterios de calidad que cumplen con las expectativas del cliente, las pruebas de funcionalidad como de usabilidad y aceptación. No obstante, varias secciones de la estructura original de la IEEE 730 fueron omitidas debido al objetivo final del proyecto.
+	
+	Este documento resulta útil durante el proceso de construcción de software, puesto que facilita y agiliza la comunicación y coordinación entre los miembros del equipo. Brindando una mayor claridad sobre los objetivos de calidad específicos del proyecto, junto con los métodos que se deben utilizar para alcanzar estos mismos, asegurando de esta forma el correcto cumplimiento de los requerimientos y por ende la satisfacción del cliente y partes interesadas. Cumpliendo además con los estándares de calidad a los que se haya adherido o con los cuales el equipo se haya comprometido a cumplir.
 	
 	\section{Conclusiones}
-	Inicio conclusiones.
+	Si bien el concepto de calidad varía de acuerdo con el punto de vista del observador, para el desarrollo de software la conformidad con los requerimientos funcionales y de rendimiento explícitamente establecidos, en conjunto con los estándares de desarrollo de documentos y las características implícitas que se esperan de todo software desarrollado profesionalmente, es una de las definiciones más aceptadas. Por esta razón, para medianos y grandes proyectos de software, es de suma importancia definir un plan de calidad que documente los procedimientos y recursos que deberían aplicarse, quién debe aplicarlos y cuándo deberían aplicarse a un proyecto, proceso, producto o contrato específico, de manera de poder alcanzar los objetivos de la calidad.
+	
+	La implementación de un estándar para documentar la calidad provee ciertas ventajas, como la uniformización de los documentos, brindando una serie de lineamientos para la correcta construcción de software, lo que mejora la comunicación con el equipo de desarrollo. No obstante, en ocasiones la utilización y elaboración de este tipo de documentos resulta tediosa y demandante, ya que de acuerdo con el tipo de proyecto se suele recomendar obviar ciertas secciones definidas en el estándar debido a que no suelen generar un impacto tan relevante en el desarrollo y los objetivos de calidad deseado para el proyecto.
 	
 	\nocite{*}
 	\section{Referencias}
 	\printbibliography[heading=none]
+	\thispagestyle{empty} % No mostrar encabezado ni pie de página en esta página
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[anchor=south east,opacity=0.12] at (current page.south east) {\includegraphics[width=3cm]{Kyria_Doro.png}};
+	\end{tikzpicture}
 \end{document}
